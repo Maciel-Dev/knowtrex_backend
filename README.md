@@ -1,51 +1,66 @@
-# FastAPI Starter
+# Python technical challenge - Knowtrex
 
-Deploy your [FastAPI](https://fastapi.tiangolo.com/) project to Vercel with zero configuration.
+## Challenge description
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/fastapi&template=fastapi)
+You are the owner of a retail shop. You buy products from an e-commerce platform to resell them.
+This app will be build to collect and transform information from the e-commerce platform.
 
-_Live Example: https://vercel-plus-fastapi.vercel.app/_
+The e-commerce platform is located in this project, at /pages/content.html.
+You can open it on your browser to see how it looks like.
 
-Visit the [FastAPI documentation](https://fastapi.tiangolo.com/) to learn more.
+## Requirements
 
-## Getting Started
+The app should be available through a rest API.
+A basic endpoint is already set up at app/main.py. You should create more to achieve the requirements below.
 
-Install the required dependencies:
+List of requirements:
+  - Using the API:
+    - Allow the user to get a list of all products from the e-commerce platform, and present them in a structured way.
+    - Each product listed, should be structured so that only the information below is shown:
+        - name (type: string).
+        - price (type: float).
+        - best_seller (type: boolean).
+          - This is true when the label "Mais vendida" is present on the product.
+        - rating (type: float).
+    - There should be a way to list only the best-selling products.
+    - There should be a way to list only the products with a rating higher than a given value.
+    - Allow the user to extract information of a single product, given its name.
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install .
-```
+## Optional
 
-Or, if using [uv](https://docs.astral.sh/uv/):
+Propose a simple interface to your script that could be used to collect information from similar e-commerce platforms.
 
-```bash
-uv sync
-```
+Suggestion:
+There could be a generic class which is inherited by each class that collects and parses information from a web site.
 
+## Recommendations
 
-## Running Locally
+As suggested at controller/main.py, using bs4 to parse the HTML is a good option.
 
-Start the development server on http://0.0.0.0:5001
+## At last
 
-```bash
-python main.py
-# using uv:
-uv run main.py
-```
+* Write down any assumptions you need to make.
+* Feel free to change the code that came with this repository,
+and make sure you have well documented, structured and presentable work.
 
-When you make changes to your project, the server will automatically reload.
+## Setting up your development environment
 
-## Deploying to Vercel
+### Installing the libraries
+At the same directory as this file, run:
+  - `pip install pipenv`
+  - `pipenv install`
 
-Deploy your project to Vercel with the following command:
+### Running the API for development
+Initialize your app using `pipenv`:
 
-```bash
-npm install -g vercel
-vercel --prod
-```
+- `pipenv shell`
 
-Or `git push` to your repository with our [git integration](https://vercel.com/docs/deployments/git).
+Then run the following commands:
 
-To view the source code for this template, [visit the example repository](https://github.com/vercel/vercel/tree/main/examples/fastapi).
+- `uvicorn app.main:app --reload`
+
+And your app will be running on http://localhost:8000/
+
+Tip:
+
+Access http://localhost:8000/docs to use the built-in interface.
